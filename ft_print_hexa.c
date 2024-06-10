@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:51:28 by astefane          #+#    #+#             */
-/*   Updated: 2024/04/17 17:14:05 by astefane         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:08:54 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static	void	ft_put_hexa(unsigned int num, const char format)
 	else
 	{
 		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
+			ft_putchar(num + '0');
 		else
 		{
 			if (format == 'x')
-				ft_putchar_fd((num - 10 + 'a'), 1);
+				ft_putchar(num - 10 + 'a');
 			if (format == 'X')
-				ft_putchar_fd((num - 10 + 'A'), 1);
+				ft_putchar(num - 10 + 'A');
 		}
 	}
 }

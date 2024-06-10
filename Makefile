@@ -6,7 +6,7 @@
 #    By: astefane <astefane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 16:35:38 by astefane          #+#    #+#              #
-#    Updated: 2024/04/17 18:20:24 by astefane         ###   ########.fr        #
+#    Updated: 2024/04/22 14:09:14 by astefane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = libftprintf.a
 
 SRCS = 		ft_print_char.c ft_print_hexa.c ft_print_integer.c \
             ft_print_percent.c ft_print_pointer.c ft_print_str.c \
-            ft_print_unsigned.c ft_printf.c ft_itoa.c ft_putchar_fd.c \
+            ft_print_unsigned.c ft_printf.c ft_itoa.c ft_putchar.c \
 
 OBJS = $(SRCS:.c=.o)
 

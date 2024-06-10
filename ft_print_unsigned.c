@@ -6,7 +6,7 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:19:13 by astefane          #+#    #+#             */
-/*   Updated: 2024/04/17 18:21:28 by astefane         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:06:37 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int	ft_len_num(long num)
 		num = num / 10;
 		len++;
 	}
-	return (0);
+	return (len);
 }
 
 static char	*ft_my_itoa(unsigned int num)
@@ -31,17 +31,14 @@ static char	*ft_my_itoa(unsigned int num)
 	char	*result;
 
 	len = ft_len_num(num);
-	if (num < 0)
-		return (0);
 	result = malloc(sizeof(char) * (len + 1));
 	if (!result)
 		return (NULL);
 	result[len] = 0;
-	while (!num)
+	while (len > 0)
 	{
-		result[len] = (num % 10) + '0';
+		result[--len] = (num % 10) + '0';
 		num = num / 10;
-		len--;
 	}
 	return (result);
 }

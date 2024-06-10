@@ -6,55 +6,49 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:38:53 by astefane          #+#    #+#             */
-/*   Updated: 2024/04/17 16:28:10 by astefane         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:40:38 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_format(va_list args, const char format)
+static int	ft_format(char format, va_list args)
 {
-	int	printf_length;
-
-	printf_length = 0;
 	if (format == 'c')
-		printf_length += ft_print_char(va_arg(args, int));
+		return (ft_print_char(va_arg(args, int)));
 	else if (format == 's')
-		printf_length += ft_print_str(va_arg(args, char *));
+		return (ft_print_str(va_arg(args, char *)));
 	else if (format == 'p')
-		printf_length += ft_print_pointer(va_arg(args, unsigned long long));
+		return (ft_print_pointer(va_arg(args, void *)));
 	else if (format == 'd' || format == 'i')
-		printf_length += ft_print_integer(va_arg(args, int));
+		return (ft_print_integer(va_arg(args, int)));
 	else if (format == 'u')
-		printf_length += ft_print_unsigned(va_arg(args, unsigned int));
+		return (ft_print_unsigned(va_arg(args, unsigned int)));
 	else if (format == 'x' || format == 'X')
-		printf_length += ft_print_hexa(va_arg(args, unsigned int), format);
+		return (ft_print_hexa(va_arg(args, unsigned int), format));
 	else if (format == '%')
-		printf_length += ft_print_percent();
-	return (printf_length);
+		return (ft_print_percent());
+	return (0);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int		i;
 	va_list	args;
-	int		printf_lenght;
+	int		count;
 
-	i = 0;
-	printf_lenght = 0;
+	count = 0;
 	va_start(args, format);
-	while (format[i])
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			printf_lenght += ft_format(args, format[i + 1]);
+			format++;
+			count += ft_format(*format, args);
 		}
 		else
-		{
-			printf_lenght += ft_print_char(format[i]);
-		}
-		i++;
+			count += ft_print_char(*format);
+		format++;
 	}
 	va_end(args);
-	return (printf_lenght);
+	return (count);
 }

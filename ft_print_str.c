@@ -6,38 +6,24 @@
 /*   By: astefane <astefane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:57:45 by astefane          #+#    #+#             */
-/*   Updated: 2024/04/17 17:29:13 by astefane         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:41:46 by astefane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static	void	ft_putstr(char *str)
+int	ft_print_str(char *str)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	while (str[i])
+	count = 0;
+	if (str == NULL)
 	{
-		write(1, &str[i], 1);
-		i++;
+		return (ft_print_str("(null)"));
 	}
-}
-
-char	ft_print_str(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == 0)
+	while (*str)
 	{
-		ft_putstr("(null)");
-		return (6);
+		count += ft_print_char(*str++);
 	}
-	while (str[i] != '\0')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	return (count);
 }
